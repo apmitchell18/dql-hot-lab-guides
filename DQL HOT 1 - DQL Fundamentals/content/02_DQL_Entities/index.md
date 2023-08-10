@@ -83,6 +83,7 @@ Using a relationship field, add a list of processes running on each host to the 
 ```
 fetch dt.entity.host
 | fieldsAdd monitoringMode, state
+| test
 ```
 
 ![Notebooks](../../assets/images/Query_Entities_With_Added_Fields.png)
