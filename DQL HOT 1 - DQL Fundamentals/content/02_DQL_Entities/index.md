@@ -72,7 +72,7 @@ and many more.
 
 
 
-Using a relationship field, add a list of processes running on each host to the results.
+Using a relationship field, add a list of process groups running on each host to the results.
 
 (**Hint**: See the [Relationship Mapping Table](https://www.dynatrace.com/support/help/shortlink/grail-querying-monitored-entities#relationship-mapping-table) for information on the relationship fields available in DQL.)
 
@@ -82,8 +82,7 @@ Using a relationship field, add a list of processes running on each host to the 
 
 ```
 fetch dt.entity.host
-| fieldsAdd monitoringMode, state
-| test
+| fieldsAdd monitoringMode, state, runs[dt.entity.process_group]
 ```
 
 ![Notebooks](../../assets/images/Query_Entities_With_Added_Fields.png)
