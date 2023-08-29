@@ -12,9 +12,9 @@ In this section, you will access the shared Dynatrace environment and review the
 
 Navigate to the provided Dynatrace environment: [INSERT LINK HERE]
 
-Find and open the **BizEvents Dojo** application:
+Find and open the **Learn DQL** application:
 
-![DQL Dojo](../../assets/images/DQL_Dojo.png)
+![Learn DQL App](../../assets/images/Learn_DQL_App.png)
 
 
 ### Step 2

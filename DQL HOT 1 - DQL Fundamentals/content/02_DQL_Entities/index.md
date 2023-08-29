@@ -162,16 +162,3 @@ In this case, you would first need to use the **expand** command to retrieve ind
 
 <br>
 <br>
-
-
----
-
-### Step 6: Entity tags [insert above]
-- Query tags
-- Parse tag values
-```
-fetch dt.entity.host
-| expand tags, alias:tag_string
-| parse tag_string, """(('['LD:tag_context ']' LD:tag_key (!<<'\\' ':') LD:tag_value)|LD:tag_key| (LD:tag_key (!<<'\\' ':') LD:tag_value)|LD:tag_key)"""
-```
-- Filter by tag values
