@@ -22,7 +22,7 @@ Three business events have been preconfigured in this environment for the EasyTr
 - Lists all currently configured business events for the EasyTrade app.
 - Counts the number of occurrences of each in the last two hours.
 
-**Hint:** There are two mandatory data fields that all business events must have: _event.category_, and _event.type_.  
+**Hint:** There are two mandatory data fields that all business events must have: _event.provider_, and _event.type_.  
 
 <H3><details>
     <summary>Click to Expand Solution</summary>
