@@ -1,6 +1,6 @@
 ## Hands-On Exercise 2 - Querying Entities
 
-In this section, you will practice querying entities and relationships with DQL.
+In this section, you will practice querying entities and relationships with DQL in a Notebook.
 
 ---
 
@@ -16,7 +16,7 @@ In a new notebook, add a new section and choose "Query Grail".
 <br>
 
 
-<details>
+<H4><details>
 <summary>Click to Expand Solution</summary>
 <br>
 <br>
@@ -27,7 +27,7 @@ fetch dt.entity.host
 ```
 
 ![Notebooks](../../assets/images/Query_Entities_Fetch_Hosts.png)
-</details>
+</details></H4>
 
 <br>
 <br>
@@ -42,7 +42,7 @@ You can use the **describe** command to query information about the schema of a 
 
 #### Add a new section to your notebook and use the describe command to list the fields associated with the dt.entity.host datatype.
 
-<details>
+<H4><details>
 <summary>Click to Expand Solution</summary>
 <br>
 
@@ -51,7 +51,7 @@ describe dt.entity.host
 ```
 
 ![Notebooks](../../assets/images/Query_Entities_Describe_Hosts.png)
-</details>
+</details></H4>
 
 <br>
 <br>
@@ -68,7 +68,7 @@ Note: When using the fieldsAdd command, you will see a list of suggested fields 
 
 #### Add monitoring mode and state to the results of your original query.
 
-<details>
+<H4><details>
 <summary>Click to Expand Solution</summary>
 
 ```
@@ -79,7 +79,7 @@ fetch dt.entity.host
 
 ![Entities with Added Fields Result](../../assets/images/Query_Entities_With_Added_Fields.png)
 
-</details>
+</details></H4>
 <br>
 <br>
 
@@ -101,7 +101,7 @@ and many more.
 (**Hint**: See the [Relationship Mapping Table](https://www.dynatrace.com/support/help/shortlink/grail-querying-monitored-entities#relationship-mapping-table) for information on the relationship functions available in DQL.)
 <br>
 
-<details>
+<H4><details>
 <summary>Click to Expand Solution</summary>
 
 ```
@@ -112,7 +112,7 @@ fetch dt.entity.host
 
 ![Add Related Entities Result](../../assets/images/Query_Entities_Add_Related_Entities.png)
 
-</details>
+</details></H4>
 <br>
 <br>
 
@@ -146,7 +146,7 @@ Result:
 
 
 
-<details>
+<H4><details>
 <summary>Click to Expand Solution</summary>
 
 ```
@@ -157,7 +157,7 @@ fetch dt.entity.host
 
 ![Lookup Host Group Result](../../assets/images/Query_Entities_Lookup_Host_Group.png)
 
-</details>
+</details></H4>
 <br>
 <br>
 
