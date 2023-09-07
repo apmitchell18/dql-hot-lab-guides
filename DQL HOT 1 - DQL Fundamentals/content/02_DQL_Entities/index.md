@@ -4,28 +4,14 @@ In this section, you will practice querying entities and relationships with DQL.
 
 ---
 
-### Step 1: Create a New Notebook
+### Step 1: Fetch a List of Hosts
 
-For this exercise, we will be querying Grail from within a Notebook.
+We will begin by querying a list of hosts.
 
-Navigate to the **Notebooks** application and create a new notebook.
-
-Name this notebook "Entity Exercises".
-
-![Notebooks](../../assets/images/Create_New_Notebook.png)
-<br>
-<br>
-
----
-
-### Step 2: Get a List of Hosts
-
-In our new notebook, we will begin by querying a list of hosts.
-
-Add a new section to your notebook and choose "Query Grail".
+In a new notebook, add a new section and choose "Query Grail".
 
 
-#### Write and execute a query to obtain a list of hosts, and limit to 10 results.
+#### Write and execute a query to obtain a list of hosts. Limit to 10 results.
 
 <br>
 
@@ -48,18 +34,39 @@ fetch dt.entity.host
 
 ---
 
+### Step 2: Find Potential Fields to Add
+
+Notice that by default, the only data returned for each host is the entity name and entity id.  To write a useful entity query, you will need to use additional fields.  To do that, you need to know what fields are available.
+
+You can use the **describe** command to query information about the schema of a datatype.  This command will return the fields associated with a datatype.
+
+#### Add a new section to your notebook and use the describe command to list the fields associated with the dt.entity.host datatype.
+
+<details>
+<summary>Click to Expand Solution</summary>
+<br>
+
+```
+describe dt.entity.host
+```
+
+![Notebooks](../../assets/images/Query_Entities_Describe_Hosts.png)
+</details>
+
+<br>
+<br>
+
+---
+
 ### Step 3: Add Additional Fields
 
-Notice that by default, the only data returned for each host is the entity name and entity id.  
+Now that you know what fields are available to query for hosts, you can add additional fields to the output by using the **fieldsAdd** command.
 
-You can add additional fields to the output by using the **fieldsAdd** command.
+Note: When using the fieldsAdd command, you will see a list of suggested fields you can add to the results.  
 
-Add the fieldsAdd command to your query.  You will see a list of suggested fields you can add to the results.  
+<!-- ![Notebooks](../../assets/images/Query_Entities_Add_Fields.png) -->
 
-![Notebooks](../../assets/images/Query_Entities_Add_Fields.png)
-
-#### Add monitoring mode and state to the results.
-
+#### Add monitoring mode and state to the results of your original query.
 
 <details>
 <summary>Click to Expand Solution</summary>
@@ -89,9 +96,7 @@ and many more.
 
 
 
-#### Using relationship functions, add the following to the results:
--  A list of **process groups** running on each host.
-- The **host group** each host belongs to.
+#### Using a relationship function, add the host group to which each host belongs to your query
 
 (**Hint**: See the [Relationship Mapping Table](https://www.dynatrace.com/support/help/shortlink/grail-querying-monitored-entities#relationship-mapping-table) for information on the relationship functions available in DQL.)
 <br>
@@ -101,7 +106,7 @@ and many more.
 
 ```
 fetch dt.entity.host
-| fieldsAdd monitoringMode, state, runs[dt.entity.process_group], instance_of[dt.entity.host_group]
+| fieldsAdd monitoringMode, state, instance_of[dt.entity.host_group]
 | limit 10
 ```
 
@@ -113,13 +118,15 @@ fetch dt.entity.host
 
 ---
 
-### Step 5: Add Host Group Name
+### Step 5: Lookup Host Group Name
 
-In the last step, you added the entity ids of the process groups and host group related to each host.  However, it would be more user friendly to have the names of these entities included in the results.
+In the last step, you added the entity id of the host group related to each host.  However, it would be more user friendly to have the names of these entities included in the results.
 
 The **lookup** command can be used to join data from related entities.
 
+Reference: [Lookup Command Documentation](https://www.dynatrace.com/support/help/shortlink/dql-commands#lookup)
 
+<br>
 
 For example, the following query fetches a list of service instances, the hosts they run on, and then the names of those hosts using the **lookup** command.
 
@@ -137,12 +144,14 @@ Result:
 #### Using the lookup command, add the name of the host group to the results.
 <br>
 
+
+
 <details>
 <summary>Click to Expand Solution</summary>
 
 ```
 fetch dt.entity.host
-| fieldsAdd monitoringMode, state, runs[dt.entity.process_group], instance_of[dt.entity.host_group]
+| fieldsAdd monitoringMode, state, instance_of[dt.entity.host_group]
 | lookup sourceField:`instance_of[dt.entity.host_group]`, lookupField:id, [ fetch dt.entity.host_group]
 ```
 
@@ -154,7 +163,7 @@ fetch dt.entity.host
 
 **Note:** 
 
-The **lookup** command will only work if the sourceField value is a <u>single ID</u>.  If the sourceField value is a list, such as the list of process groups, the query will return an error.
+The **lookup** command will only work if the sourceField value is a <u>single ID</u>.  If the sourceField value is a list, such as a list of process groups, the query will return an error.
 
 ![Lookup Error](../../assets/images/Query_Entities_Lookup_Error.png)
 
