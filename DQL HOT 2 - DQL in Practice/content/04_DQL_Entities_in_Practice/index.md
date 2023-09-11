@@ -30,6 +30,7 @@ fetch dt.entity.process_group_instance
 
 ### Step 2: Add additional context information regarding these applications
 As you can see, that simple query is giving us the list of potentially affected processes by a known vulnerability. With this we can start adding context information, for example which is the host the application is running on.
+
 #### Update the query to add information about the underlying host.
 
 ![Notebooks](../../assets/images/NET3_5_wHost.png)
@@ -51,3 +52,32 @@ fetch dt.entity.process_group_instance
 </details></H4>
 ---
 
+---
+
+### Step 3: Add the underlying host name
+Now that we extracted the underlying host ID, we can use this information to look up the host name.
+
+#### Update the query to add the underlying host name.
+
+![Notebooks](../../assets/images/entities_complete.png)
+
+(**Hint**: We will need to use the lookup command (Refer to the DQL HOT 1 Entities session). Check out [lookup command documentation](https://www.dynatrace.com/support/help/platform/grail/dynatrace-query-language/commands#lookup))
+
+<H4><details>
+<summary>Click to Expand Solution</summary>
+<br>
+
+```
+fetch dt.entity.process_group_instance
+| filter processType == "DOTNET" and contains(toString(softwareTechnologies), "3.5")
+| fields entity.name, softwareTechnologies, belongs_to
+| fieldsAdd belongs_string = toString(belongs_to)
+| fieldsAdd host = substring(belongs_string, from:indexOf(belongs_string, ":")+2, to:lastIndexOf(belongs_string, "\""))
+| lookup [fetch dt.entity.host 
+  | filter osType == "WINDOWS" 
+  | fields name=entity.name, id ], sourceField:host, lookupField:id, prefix:"host."
+| fieldsRemove belongs_to, host, belongs_string
+| sort entity.name asc
+```
+</details></H4>
+---
