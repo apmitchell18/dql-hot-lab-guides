@@ -13,5 +13,5 @@ We will begin by querying a list of process group instances based on their techn
 
 #### Write and execute a query to obtain a list of PGIs which technology is .NET and the version contains '3.5'.
 
-![Notebooks](../../assets/images/NET 3_5.png)
+![Notebooks](../../assets/images/NET%203_5.png)
 ...
