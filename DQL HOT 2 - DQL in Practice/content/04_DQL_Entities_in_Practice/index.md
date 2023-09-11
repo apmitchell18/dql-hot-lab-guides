@@ -27,3 +27,27 @@ fetch dt.entity.process_group_instance
 </details></H4>
 
 ---
+
+### Step 2: Add additional context information regarding these applications
+As you can see, that simple query is giving us the list of potentially affected processes by a known vulnerability. With this we can start adding context information, for example which is the host the application is running on.
+#### Update the query to add information about the underlying host.
+
+![Notebooks](../../assets/images/NET3_5_wHost.png)
+
+(**Hint**: You can use the **belongs_to** field that provides the underlying host information. In order to display the ID, you will need to process the contents of this field. Check out [String functions](https://www.dynatrace.com/support/help/platform/grail/dynatrace-query-language/functions#dql-string-functions), in this case **toString** and **substring**)
+
+<H4><details>
+<summary>Click to Expand Solution</summary>
+<br>
+
+```
+fetch dt.entity.process_group_instance
+| filter processType == "DOTNET" and contains(toString(softwareTechnologies), "3.5")
+| fieldsAdd softwareTechnologies
+| fieldsAdd belongs_string = toString(belongs_to)
+| fieldsAdd host = substring(belongs_string, from:indexOf(belongs_string, ":")+2, to:lastIndexOf(belongs_string, "\""))
+| fieldsRemove belongs_string
+```
+</details></H4>
+---
+
