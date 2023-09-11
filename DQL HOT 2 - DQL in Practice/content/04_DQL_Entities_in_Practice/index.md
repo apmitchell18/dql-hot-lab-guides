@@ -11,7 +11,19 @@ For this kind of situations, the entity information available in GRAIL gives us 
 
 We will begin by querying a list of process group instances based on their technology type. In a new notebook, add a new section and choose "Query Grail".
 
-#### Write and execute a query to obtain a list of PGIs which technology is .NET and the version contains '3.5'.
+#### Write and execute a query to obtain a list of PGIs which technology is .NET and the version contains '3.5'. Make sure to add the 'softwareTechnologies' column to confirm that the .NET version 3.5 is being met. Here is an example of a result we are looking for.
 
 ![Notebooks](../../assets/images/NET%203_5.png)
-...
+
+<H4><details>
+<summary>Click to Expand Solution</summary>
+<br>
+
+```
+fetch dt.entity.process_group_instance
+| filter processType == "DOTNET" and contains(toString(softwareTechnologies), "3.5")
+| fieldsAdd softwareTechnologies
+```
+</details></H4>
+
+---
