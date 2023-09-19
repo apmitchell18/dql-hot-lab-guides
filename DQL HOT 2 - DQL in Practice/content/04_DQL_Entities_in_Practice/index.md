@@ -81,3 +81,33 @@ fetch dt.entity.process_group_instance
 ```
 </details></H4>
 ---
+
+
+## Additional Exercise
+
+Even though the previous example is very useful, it is a very specific and not dynamic enough as we are hardcoding the technology we are looking for into our query. Wouldn’t it be way better to have a curated list of technologies discovered in our environment and select the one we are interested at instead of having to manually hardcode it? 
+
+We can take this example one step further. Using dashboards, some creative queries and variables, we can have the same view with the difference that it can now be dynamically filtered based on the selected discovered technology.
+
+### Step 1: Define a variable to discover technologies
+Using a DQL query, look for the detected software technologies based on PGI metadata.
+
+![Notebooks](../../assets/images/dqlVariable.png)
+
+(**Hint**: There are several ways of achieving this. There might be situations where the resulting dataset returns more than 1,000 results which is a limitation for a dashboard variable. Using functions like **collectDistinct** we can make sure we return as many individual meaningful entries as possible.)
+
+<H4><details>
+<summary>Click to Expand Solution</summary>
+<br>
+
+```
+fetch dt.entity.process_group_instance
+| expand softwareTechnologies
+| filter isNotNull(softwareTechnologies)
+| summarize temp = collectDistinct(softwareTechnologies)
+| expand techVersion = temp
+| sort techVersion asc
+| fieldsRemove temp
+```
+</details></H4>
+---
