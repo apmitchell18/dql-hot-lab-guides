@@ -6,7 +6,7 @@ In this section, you will work through a practical use case using log queries in
 
 ### Step 1: Finding Logs - Log Sources
 
-Let's find all sources in an environment. It's up to you to run these queries from a Notebook or the Logs and Events screen.
+Let's find all sources in an environment. Create a Notebook and run a DQL Query.
 
 **Run the following query and review the results:**
 ```
@@ -90,6 +90,7 @@ Now you can work with the requestor to narrow down the process.
 <H3><details>
     <summary>Click to Expand Solution</summary>
 
+Example Process Group - use a real Process Group from your environment. 
 ```
 fetch logs
 | filter matchesPhrase(content, "HeadlessStatistics") and dt.entity.process_group=="PROCESS_GROUP-6577017914CD4744"
