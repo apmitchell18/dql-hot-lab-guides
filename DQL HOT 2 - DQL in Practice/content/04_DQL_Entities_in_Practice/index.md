@@ -111,3 +111,29 @@ fetch dt.entity.process_group_instance
 ```
 </details></H4>
 ---
+
+### Step 2: Adapt the previous example to use the variable 
+Using the previous entity information example as a starting point, use the variable to be able to set the technology dynamically based on the value selection.
+
+![Dashboard](../../assets/images/dynamicDashboard.png)
+
+(**Hint**: [Here](https://www.dynatrace.com/support/help/observe-and-explore/dashboards-new/components/dashboard-component-data#add-data) you can find the documentation on how to reference variables in your code.
+
+<H4><details>
+<summary>Click to Expand Solution</summary>
+<br>
+
+```
+fetch dt.entity.process_group_instance
+| filter contains(toString(softwareTechnologies), $softwareTechnologies)
+| fields entity.name, softwareTechnologies, belongs_to, metadata
+| fieldsAdd belongs_string = toString(belongs_to)
+| fieldsAdd host = substring(belongs_string, from:indexOf(belongs_string, ":")+2, to:lastIndexOf(belongs_string, "\""))
+| lookup [fetch dt.entity.host 
+| fields hostName=entity.name, hostId=id ], sourceField:host, lookupField:hostId
+| fieldsRemove belongs_to, lookup.hostId, host, belongs_string
+| sort entity.name asc
+| sort lookup.hostName
+```
+</details></H4>
+---
