@@ -33,7 +33,7 @@ As you can see, that simple query is giving us the list of potentially affected 
 
 #### Update the query to add information about the underlying host.
 
-![Notebooks](../../assets/images/NET3_5_wHost.png)
+![Added host](../../assets/images/NET3_5_wHost.png)
 
 (**Hint**: You can use the **belongs_to** field that provides the underlying host information. In order to display the ID, you will need to process the contents of this field. Check out [String functions](https://www.dynatrace.com/support/help/platform/grail/dynatrace-query-language/functions#dql-string-functions), in this case **toString** and **substring**)
 
@@ -59,7 +59,7 @@ Now that we extracted the underlying host ID, we can use this information to loo
 
 #### Update the query to add the underlying host name.
 
-![Notebooks](../../assets/images/entities_complete.png)
+![Entities complete](../../assets/images/entities_complete.png)
 
 (**Hint**: We will need to use the lookup command (Refer to the DQL HOT 1 Entities session). Check out [lookup command documentation](https://www.dynatrace.com/support/help/platform/grail/dynatrace-query-language/commands#lookup))
 
@@ -92,7 +92,7 @@ We can take this example one step further. Using dashboards, some creative queri
 ### Step 1: Define a variable to discover technologies
 Using a DQL query, look for the detected software technologies based on PGI metadata.
 
-![Notebooks](../../assets/images/dqlVariable.png)
+![DQL Variable](../../assets/images/dqlVariable.png)
 
 (**Hint**: There are several ways of achieving this. There might be situations where the resulting dataset returns more than 1,000 results which is a limitation for a dashboard variable. Using functions like **collectDistinct** we can make sure we return as many individual meaningful entries as possible.)
 
