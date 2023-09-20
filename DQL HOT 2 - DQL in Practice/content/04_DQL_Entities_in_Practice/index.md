@@ -1,4 +1,4 @@
-## Hands-On Exercise 3 - Entity Queries in Practice
+## Hands-On Exercise 4 - Entity Queries in Practice
 
 In this section, you will work through a practical use case using entity queries in DQL. The familiar Dynatrace entity model is available directly in DQL queries, giving you direct access to entity relationships and properties. 
 
