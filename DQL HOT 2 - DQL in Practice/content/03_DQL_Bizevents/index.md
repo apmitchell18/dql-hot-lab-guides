@@ -1,4 +1,4 @@
-## Hands-On Exercise 2 - Querying Entities
+## Hands-On Exercise 3 - Querying Entities
 
 In this section, you will practice querying business events with DQL in a Notebook.
 
