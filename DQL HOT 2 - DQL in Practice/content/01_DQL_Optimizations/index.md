@@ -1,4 +1,4 @@
-## Hands-On Exercise 1 - DQL Optimization
+## Hands-On Exercise 1 - Using DQL for Cost Control
 
 The consumption model for both logs and events on DPS is based on three dimensions:​
 
