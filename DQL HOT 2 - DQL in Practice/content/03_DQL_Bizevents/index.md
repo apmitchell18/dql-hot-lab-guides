@@ -88,9 +88,3 @@ There are many ways the Summarize command can be used to manipulate the captured
 ![Bizevent Exercise 3 Solution](../../assets/images/bizevent_solution_3.png)
 
 </H4></details>
-
-
----
-
-
-### Step 4: TBD
