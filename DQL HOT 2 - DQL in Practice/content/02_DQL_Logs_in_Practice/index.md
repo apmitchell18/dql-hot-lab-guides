@@ -39,7 +39,7 @@ fetch logs
 
 ### Step 2: Finding Logs - Log Sources
 
-Now let's try to locate a log by a piece of text. For example, you may just be given an example of a log to start with, but not be given the log source.
+Now let's try to locate a log by a piece of text. For example, you may just be given an example of a log to start with, but not be given the log source. Think about why you can't just search for this exact log line.
 
 **Write a query to find logs that look like this example line:**
 ```
@@ -75,7 +75,7 @@ You'll see that lots of different processes have this style of log.
 
 Any log queries you write need to account for the right scope.
 
-**Find the underlying process groups for these logs**
+**Find the underlying process group for these logs**
 
 ```
 fetch logs
@@ -93,7 +93,7 @@ Now you can work with the requestor to narrow down the process.
 Example Process Group - use a real Process Group from your environment. 
 ```
 fetch logs
-| filter matchesPhrase(content, "HeadlessStatistics") and dt.entity.process_group=="PROCESS_GROUP-6577017914CD4744"
+| filter matchesPhrase(content, "HeadlessStatistics") and in(dt.entity.process_group, "PROCESS_GROUP-A6BBB46BDAADE0F2")
 ```
 
 You should see an output of logs filtered down by the desired process group.
@@ -124,8 +124,25 @@ First, we need to parse out those numbers so we can use them.
 
 ```
 fetch logs
-| filter matchesPhrase(content, "[HeadlessStatistics]") and dt.entity.process_group=="PROCESS_GROUP-6577017914CD4744“
-| parse content, "LD 'started [' INT:Started '] Completed [' INT:Completed ']’”
+| filter matchesPhrase(content, "[HeadlessStatistics]") and dt.entity.process_group=="PROCESS_GROUP-A6BBB46BDAADE0F2"
+| parse content, "LD 'started [' INT:Started '] Completed [' INT:Completed ']'"
+| fields Started, Completed
+| fieldsAdd Matching=if(Started==Completed, true, else:false)
+| filter Matching==false and isNotNull(Started)
+
+```
+
+</H3></details>
+
+Next, add a field that evaluates if the "started" count matches the "Completed" count. The filter down the results to the cases when they don't match.
+
+<H3><details>
+    <summary>Click to Expand Solution</summary>
+
+```
+fetch logs
+| filter matchesPhrase(content, "[HeadlessStatistics]") and dt.entity.process_group=="PROCESS_GROUP-A6BBB46BDAADE0F2"
+| parse content, "LD 'started [' INT:Started '] Completed [' INT:Completed ']'"
 | fields Started, Completed
 | fieldsAdd Matching=if(Started==Completed, true, else:false)
 | filter Matching==false and isNotNull(Started)
