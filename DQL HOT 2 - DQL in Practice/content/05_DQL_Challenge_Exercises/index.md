@@ -65,7 +65,7 @@ Think about it. We know how to access logs, we know how to filter these log entr
 ### Step 1: Define a variable to discover management zones
 In this case, we will reference host level data to retrieve the list of available management zones. In a dashboard, lets define a query type of variable so we can use DQL to access the list of available management zones in the environment.
 
-![DQL Variable](../../assets/images/managementZones.png)
+![MZ Variable](../../assets/images/managementZonesVariable.png)
 
 (**Hint**: Remember using commands like describe to understand what kind of data is avaiable for host entities..)
 
@@ -80,8 +80,27 @@ fetch dt.entity.host
 | fields MZ
 ```
 </details></H4>
----
 
+---
+### Step 2: Use the defined variable to fetch logs
+At this point we have a way to dynamically extract all the management zones read from hosts. Now we just need to use this information to limit the scope of our log fetching. If you fetch logs, you will note that there is no field that references the concept of a management zone anywhere, so how are we going to achieve the filtering?
+Using a lookup command, we can run a second query fetching for host entity data, and in this query is where we do the filtering based on management zones. Basically what we are asking for is a list of hosts IDs that belong to a particular management zone, and using this list of IDs we are requesting log entries for such hosts.
+
+![logsManagementZones](../../assets/images/logsByManagementZone.png)
+
+<H4><details>
+<summary>Click to Expand Solution</summary>
+<br>
+
+```
+fetch logs
+| lookup [fetch dt.entity.host 
+	| filter in(managementZones, $ManagementZone) 
+    | fields hostName=entity.name, hostId=id, mz=managementZones], sourceField:host.name, lookupField:hostName
+| filter isNotNull(lookup.hostName)
+```
+</details></H4>
+---
 ...
 
 ### Exercise 3
