@@ -43,7 +43,7 @@ Now let's try to locate a log by a piece of text. For example, you may just be g
 
 **Write a query to find logs that look like this example line:**
 ```
-2023-08-22 16:30:03 uemload INFO [HeadlessStatistics] Aug 22 16:25:00: Visits: started [10] Completed [9] Skipped [0] Exceptions [7] Average [2] started/minute. from:[Aug 22 16:25:00] to:[Aug 22 16:29:00]
+2023-08-21 11:25:13 uemload    INFO  [HeadlessStatistics] Aug 21 11:20:00: Visits: started [2] Completed [2] Skipped [0] Exceptions [2] Average [2] started/minute. from:[Aug 21 11:24:00] to:[Aug 21 11:24:00]
 ```
 
 Since most of these attributes look like they will vary, pick something that looks consistent.
