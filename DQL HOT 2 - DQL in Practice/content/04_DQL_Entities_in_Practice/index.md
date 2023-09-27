@@ -45,9 +45,9 @@ As you can see, that simple query is giving us the list of potentially affected 
 fetch dt.entity.process_group_instance
 | filter processType == "DOTNET" and contains(toString(softwareTechnologies), "3.5")
 | fieldsAdd softwareTechnologies
-| fieldsAdd belongs_string = toString(belongs_to)
-| fieldsAdd host = substring(belongs_string, from:indexOf(belongs_string, ":")+2, to:lastIndexOf(belongs_string, "\""))
-| fieldsRemove belongs_string
+| fieldsAdd belongs = toString(belongs_to)
+| fieldsAdd host = substring(belongs, from:indexOf(belongs, ":")+2, to:lastIndexOf(belongs, "\""))
+| fieldsRemove belongs
 ```
 </details></H4>
 ---
