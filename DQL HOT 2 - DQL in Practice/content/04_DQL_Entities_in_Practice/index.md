@@ -70,14 +70,13 @@ Now that we have extracted the underlying host entity ID, we can use this inform
 ```
 fetch dt.entity.process_group_instance
 | filter processType == "DOTNET" and contains(toString(softwareTechnologies), "3.5")
-| fields entity.name, softwareTechnologies, belongs_to
-| fieldsAdd belongs_string = toString(belongs_to)
-| fieldsAdd host = substring(belongs_string, from:indexOf(belongs_string, ":")+2, to:lastIndexOf(belongs_string, "\""))
+| fieldsAdd softwareTechnologies
+| fieldsAdd belongs = toString(belongs_to)
+| fieldsAdd host = substring(belongs, from:indexOf(belongs, ":")+2, to:lastIndexOf(belongs, "\""))
 | lookup [fetch dt.entity.host 
-  | filter osType == "WINDOWS" 
-  | fields name=entity.name, id ], sourceField:host, lookupField:id, prefix:"host."
-| fieldsRemove belongs_to, host, belongs_string
-| sort entity.name asc
+	| filter osType == "WINDOWS" 
+	| fields name=entity.name, id ], sourceField:host, lookupField:id, prefix:"host."
+| fields entity.name, softwareTechnologies, host.name, host.id
 ```
 </details></H4>
 ---
