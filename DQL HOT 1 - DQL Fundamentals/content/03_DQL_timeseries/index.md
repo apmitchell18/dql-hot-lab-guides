@@ -30,7 +30,9 @@ timeseries min_cpu=min(dt.host.cpu.usage), max(dt.host.cpu.usage), default:99.9,
 
 ### Exercise 1
 
-Using the timeseries command create a chart within a notebook or dashboard that displays the avg cpu percentage split by host. The resulting chart should be similair to the image below:
+For these exercises, you will use the **[training environment](https://zcy16892.apps.dynatrace.com/ui/apps/dynatrace.notebooks/notebooks)**. 
+
+Using the timeseries command create a chart within a notebook or dashboard that displays the avg cpu percentage split by host. The resulting chart should be similar to the image below: 
 
 _Note_ - the number of hosts in the training environment may be less than shown below.
 
