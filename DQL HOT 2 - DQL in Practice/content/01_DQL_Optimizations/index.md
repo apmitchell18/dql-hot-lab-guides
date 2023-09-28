@@ -21,10 +21,11 @@ fetch dt.system.query_executions
 ```
 
 **Questions to think about:**
-- What fields tell me about the cost of this query?  
 - Is there more than one way to think about query cost?
+- Which fields give me information about the cost of this query?  
 - What fields could I use to find where this query was run?
 
+<br>
 
 **Expected Results:**
 

@@ -25,7 +25,7 @@ Three business events have been preconfigured in this environment for the EasyTr
 	| summarize count = count(), by:{event.provider, event.type}
 ```
 
-![Bizevent Exercise 1 Solution](../../assets/images/bizevent_solution_ex2.png)
+![Bizevent Exercise 1 Solution](../../assets/images/bizevent_solution_1.png)
 
 </H4></details>
 
@@ -40,7 +40,7 @@ Now that we know what business events exist in this environment, we can begin us
 
 Business events don't just represent the occurrence of an event.  Business event objects can also contain extracted data which provides additional information about the event.
 
-One of the business events, _com.easytrade.deposit-money_, represents a user using the application to deposit money.  This event is configured to extract additional information including the user's account id (**Account ID**) and the amount of money deposited (**Amount**).
+One of the business events, _com.easytrade.deposit-money_, represents a user using the application to deposit money.  This event is configured to extract additional information including the user's account id (**accountId**) and the amount of money deposited (**amount**).
 
 #### Write a query that will provide the number of <u>unique users</u> who have deposited money in the last 2 hours.
 
@@ -56,7 +56,7 @@ One of the business events, _com.easytrade.deposit-money_, represents a user usi
     | summarize distinctUsers = countDistinct(accountId)
 ```
 
-![Bizevent Exercise 2 Solution](../../assets/images/bizevent_solution_ex3.png)
+![Bizevent Exercise 2 Solution](../../assets/images/bizevent_solution_2.png)
 
 </H4></details>
 
@@ -71,7 +71,7 @@ One of the business events, _com.easytrade.deposit-money_, represents a user usi
 
 There are many ways the Summarize command can be used to manipulate the captured data to perform analysis.
 
-#### Using the summarize command and the available fields (Account ID and Amount), write a query to provide the following:
+#### Using the summarize command and the available fields (accountId and amount), write a query to provide the following:
 - The total amount of money deposited by each user.
 - The total number of deposit transactions initiated by each user.
 - Order the list to show the users who have deposited the most amount of money first.
@@ -82,8 +82,8 @@ There are many ways the Summarize command can be used to manipulate the captured
 
 ```
     fetch bizevents
-    | filter event.type == "com.easytrade.deposit"
-    | summarize {totalMoneyDeposited = sum(Amount), numberOfTransactions = count()}, by:{`Account ID`}
+    | filter event.type == "com.easytrade.deposit-money"
+    | summarize {totalMoneyDeposited = sum(amount), numberOfTransactions = count()}, by:{`accountId`}
     | sort totalMoneyDeposited desc
     | limit 5
 ```
