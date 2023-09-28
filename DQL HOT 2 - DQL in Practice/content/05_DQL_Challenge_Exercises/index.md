@@ -2,7 +2,7 @@
 
 In this section, you will find additional exercises to practice and test your abilities querying logs, entities, metrics, and business events in DQL.
 
-## Exercise 1: DQL Entities in Practice
+## Exercise 1: Process groups by technology
 
 Even though the entity example is very useful, it is not dynamic as we are hardcoding the technology we are looking for into our query. Wouldn’t it be way better to have a refined list of technologies discovered in our environment and select the one we are interested at instead of having to manually hardcode it? 
 
