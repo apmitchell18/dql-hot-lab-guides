@@ -16,6 +16,13 @@ Three business events have been preconfigured in this environment for the EasyTr
 
 **Hint:** There are two mandatory data fields that all business events must have: _event.provider_, and _event.type_.  
 
+<H4>Expected Result:
+
+<br>
+
+![Bizevent Exercise 1 Solution](../../assets/images/bizevent_solution_1.png)
+
+
 <H4><details>
     <summary>Click to Expand Solution</summary>
 
@@ -24,8 +31,6 @@ Three business events have been preconfigured in this environment for the EasyTr
 	| filter event.provider == "www.easytrade.com"
 	| summarize count = count(), by:{event.provider, event.type}
 ```
-
-![Bizevent Exercise 1 Solution](../../assets/images/bizevent_solution_1.png)
 
 </H4></details>
 
@@ -46,6 +51,12 @@ One of the business events, _com.easytrade.deposit-money_, represents a user usi
 
 (**Hint:** Check the documentation for a DQL function that can provide a count of unique values: https://www.dynatrace.com/support/help/shortlink/dql-functions)
 
+<H4>Expected Result:
+
+<br>
+
+![Bizevent Exercise 2 Solution](../../assets/images/bizevent_solution_2.png)
+
 
 <H4><details>
     <summary>Click to Expand Solution</summary>
@@ -56,7 +67,6 @@ One of the business events, _com.easytrade.deposit-money_, represents a user usi
     | summarize distinctUsers = countDistinct(accountId)
 ```
 
-![Bizevent Exercise 2 Solution](../../assets/images/bizevent_solution_2.png)
 
 </H4></details>
 
@@ -77,6 +87,12 @@ There are many ways the Summarize command can be used to manipulate the captured
 - Order the list to show the users who have deposited the most amount of money first.
 - Limit to the top 5 depositors
 
+<H4> Expected Result:
+
+<br>
+
+![Bizevent Exercise 3 Solution](../../assets/images/bizevent_solution_3.png)
+
 <H4><details>
     <summary>Click to Expand Solution</summary>
 
@@ -87,7 +103,5 @@ There are many ways the Summarize command can be used to manipulate the captured
     | sort totalMoneyDeposited desc
     | limit 5
 ```
-
-![Bizevent Exercise 3 Solution](../../assets/images/bizevent_solution_3.png)
 
 </H4></details>
