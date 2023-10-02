@@ -100,12 +100,3 @@ fetch logs
 | filter isNotNull(lookup.hostName)
 ```
 </details></H4>
-
----
-
-
-<!-- ### Exercise 3: Charting Business Events
-
-Querying and performing simple aggregations of business data can be useful, but customers will want to combine data and see metrics over time.  
-
-In this exercise, use the business events  -->

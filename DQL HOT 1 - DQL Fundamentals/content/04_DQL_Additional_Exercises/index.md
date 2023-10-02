@@ -23,7 +23,7 @@ fetch logs
 
 ### Exercise 2 - Entities
 
-**In the [HOT session environment](https://zcy16892.apps.dynatrace.com/), pick one host and fetch a list of all the process groups running on that host that contain "easytravel" in their name. There may be more than one possible solution.**
+In the [HOT session environment](https://zcy16892.apps.dynatrace.com/), pick one host and fetch a list of all the process groups running on that host that contain "easytravel" in their name. There may be more than one possible solution.
 
 HINT: Try to solve this exercise using the **Expand** command mentioned at the end of the previous entity exercises.
 
@@ -44,7 +44,6 @@ fetch dt.entity.host
 <br>
 <br>
 
-![Additional Entity Exercise](../../assets/images/AdditionalEntityExercise.png)
 
 ### Exercise 3 - Timeseries
 
