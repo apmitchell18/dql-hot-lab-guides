@@ -15,7 +15,7 @@ As we reviewed in the DQL HOT session 1, describe command is a powerful command 
 
 #### Write and execute a query to obtain a list of PGIs where technology is .NET and the version contains '3.5'. Make sure to add the 'softwareTechnologies' column to confirm that the .NET version 3.5 is being met. Here is an example of a result we are looking for.
 
-![Notebooks](../../assets/images/NET%203_5.png)
+![Notebooks](../../assets/images/NET_3_5.png)
 
 <H4><details>
 <summary>Click to Expand Solution</summary>

@@ -36,7 +36,7 @@ Using the timeseries command create a chart within a notebook or dashboard that 
 
 _Note_ - the number of hosts in the training environment may be less than shown below.
 
-![Host CPU](../../assets/images/CPU%20by%20host.png)
+![Host CPU](../../assets/images/CPU_by_host.png)
 
 <H3><details>
     <summary>Click to Expand Solution</summary>
